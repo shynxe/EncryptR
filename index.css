@@ -30,6 +30,7 @@ body {
     margin-top: 30px;
     flex-wrap: wrap;
     width: 28vw;
+    min-width: 300px;
 }
 
 .heading {
@@ -123,6 +124,7 @@ input[type=text] {
     padding-inline: 16px;
     font-family: 'Open Sans', sans-serif;
     outline-color: rgba(0, 0, 0, 0);
+    z-index: 0;
 }
 
 input[type=text]:active, input[type=text]:focus-visible {
@@ -193,6 +195,7 @@ input:checked + .slider:before {
 #encryptBtn {
     flex-basis: 60px;
     border-radius: 0 6px 6px 0;
+    z-index: 1;
 }
 
 .visible {
