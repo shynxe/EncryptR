@@ -189,7 +189,10 @@ input:checked + .slider:before {
 }
 
 #result {
+    text-align: center;
     color: #6c757d;
+    width: 100%;
+    overflow-wrap: anywhere;
 }
 
 #encryptBtn {
