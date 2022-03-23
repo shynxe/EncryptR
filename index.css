@@ -1,6 +1,8 @@
 body {
     height: 100vh;
     margin: 0;
+
+    font-family: 'Open Sans', sans-serif;
 }
 
 .container {
@@ -11,6 +13,25 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.header {
+    display: flex;
+    flex-basis: 30vh;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 30vh;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    width: 28vw;
+}
+
 .heading {
     font-family: 'Open Sans', sans-serif;
     font-size: 36px;
@@ -19,10 +40,65 @@ body {
 }
 
 textarea {
-    padding: 8px 16px;
+    padding: 14px 16px;
     height: 80px;
-    min-height: 80px;
-    min-width: 500px;
+    min-height: 120px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    border: 1px solid rgb(226, 232, 240);
+    transition-duration: 0.2s;
+    outline-color: rgba(0, 0, 0, 0);
+    border-radius: 6px;
+    padding-inline: 16px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+textarea:active, textarea:focus-visible {
+    outline-color: rgb(99, 164, 241);
+}
+
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    background-color: rgb(49, 130, 206);
+    border: 1px solid rgb(226, 232, 240);
+    outline-color: rgba(0, 0, 0, 0);
+    transition-duration: 0.2s;
+    border-radius: 6px;
+    padding-inline: 16px;
+    cursor: pointer;
+    color: white;
+}
+
+button:active, button:focus-visible {
+    outline-color: rgb(99, 164, 241);
+}
+
+button.decrypt {
+    background-color: rgb(213, 63, 140);
+}
+
+.delay-animation {
+    transition-duration: .8s;
+}
+
+button.decrypt:hover {
+    background-color: rgb(184, 50, 128);
+}
+
+button:hover {
+    background-color: rgb(43, 108, 176);
 }
 
 .switch {
@@ -30,6 +106,27 @@ textarea {
     display: inline-block;
     width: 60px;
     height: 34px;
+}
+
+input[type=text] {
+    padding: 0 16px;
+    min-height: 40px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    word-spacing: 0;
+    color: rgb(45, 55, 72);
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid rgb(226, 232, 240);
+    transition-duration: 0.2s;
+    border-radius: 6px;
+    padding-inline: 16px;
+    font-family: 'Open Sans', sans-serif;
+    outline-color: rgba(0, 0, 0, 0);
+}
+
+input[type=text]:active, input[type=text]:focus-visible {
+    outline-color: rgb(99, 164, 241);
 }
 
 .switch input {
@@ -83,4 +180,17 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+#message, #key, #result {
+    text-transform: lowercase;
+}
+
+#result {
+    color: #6c757d;
+}
+
+#encryptBtn {
+    flex-basis: 60px;
+    border-radius: 0 6px 6px 0;
 }

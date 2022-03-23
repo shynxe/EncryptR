@@ -12,16 +12,28 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="heading" style="margin-bottom: 10px;">EncryptR</h1>
+    <div class="header">
+        <h1 id="title" class="heading">EncryptR</h1>
+    </div>
 
-    <label class="switch" style="margin-bottom: 15px;">
-        <input type="checkbox" checked>
-        <span class="slider round"></span>
-    </label>
+    <div class="main">
+        <label class="switch" style="margin-bottom: 5px">
+            <input id="state" type="checkbox" checked onclick="toggleState()">
+            <span class="slider round"></span>
+        </label>
+        <div style="width: 100%;">
+            <textarea id="message" placeholder="Type your message here..."></textarea>
+        </div>
+        <div style="display:flex; width:100%">
+            <label style="flex: 1; margin-right: 4px;">
+                <input id="key" type="text" placeholder="Enter key here..." style="width: 100%; border-radius: 6px 0 0 6px;"/>
+            </label>
+            <button id="encryptBtn" onclick='encryptMessage("abcde", "bbbbb")'>Encrypt</button>
+        </div>
+        <p id="result"></p>
+    </div>
 
-    <label>
-        <textarea placeholder="Here is a sample placeholder"></textarea>
-    </label>
+    <div style="flex: 1"></div>
 
     <script src="index.js"></script>
 </div>
