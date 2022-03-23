@@ -5,55 +5,62 @@ const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
 const indexToChar = {...characters};
 const charToIndex = characters.reduce((prev, curr, index) => ({...prev, [curr]: index}), {});
 
-console.log("charToIndex: ", charToIndex);
+const resultElement = document.getElementById("result");
+const messageElement = document.getElementById("message");
+const encryptButton = document.getElementById("encryptBtn");
+const keyElement = document.getElementById("key");
 
 const encryptMessage = () => {
     let result = "";
 
-    const message = document.getElementById("message").value.toUpperCase();
-    const key = document.getElementById("key").value.toUpperCase();
+    const message = messageElement.value.toUpperCase();
+    const key = keyElement.value.toUpperCase();
 
     for (let i = 0; i < message.length; ++i) {
         const value = charToIndex[message[i]] + charToIndex[key[i % key.length]];
         if (isNaN(value)) {
-            document.getElementById("result").innerHTML = "error: invalid characters";
+            resultElement.innerHTML = "error: invalid characters";
             return;
         }
         result += indexToChar[value < characters.length ? value : value - characters.length];
     }
 
-    document.getElementById("result").innerHTML = result;
-    document.getElementById("result").className = "visible";
+    resultElement.innerHTML = result;
+    resultElement.className = "visible";
 }
 
 const decryptMessage = () => {
     let result = "";
 
-    const message = document.getElementById("message").value.toUpperCase();
-    const key = document.getElementById("key").value.toUpperCase();
+    const message = messageElement.value.toUpperCase();
+    const key = keyElement.value.toUpperCase();
 
     for (let i = 0; i < message.length; ++i) {
         const value = charToIndex[message[i]] - charToIndex[key[i % key.length]];
+        if (isNaN(value)) {
+            resultElement.innerHTML = "error: invalid characters";
+            return;
+        }
         result += indexToChar[value >= 0 ? value : characters.length + value];
     }
 
-    document.getElementById("result").innerHTML = result;
-    document.getElementById("result").className = "visible";
+    resultElement.innerHTML = result;
+    resultElement.className = "visible";
 }
 
 const toggleState = () => {
     const checked = document.getElementById("state").checked;
-    document.getElementById("encryptBtn").onclick = checked ? encryptMessage : decryptMessage;
+    encryptButton.onclick = checked ? encryptMessage : decryptMessage;
     document.getElementById("title").innerHTML = checked ? "EncryptR" : "DecryptR";
-    document.getElementById("encryptBtn").innerHTML = checked ? "Encrypt" : "Decrypt";
-    document.getElementById("encryptBtn").className = checked ? "delay-animation" : "delay-animation decrypt";
+    encryptButton.innerHTML = checked ? "Encrypt" : "Decrypt";
+    encryptButton.className = checked ? "delay-animation" : "delay-animation decrypt";
     setTimeout(() => {
-        document.getElementById("encryptBtn").className = checked ? "" : "decrypt";
+        encryptButton.className = checked ? "" : "decrypt";
     }, 800);
-    document.getElementById("result").className = "hidden";
+    resultElement.className = "hidden";
 }
 
 const copyResult = () => {
-    navigator.clipboard.writeText(document.getElementById("result").innerHTML.toLowerCase());
-    document.getElementById("result").className = "hidden";
+    navigator.clipboard.writeText(resultElement.innerHTML.toLowerCase());
+    resultElement.className = "hidden";
 }
