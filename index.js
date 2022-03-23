@@ -1,5 +1,5 @@
 const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
-    "Q", "R",  "S", "T", "U", "V",  "W", "X", "Y", "Z",  "0", "1",  "2", "3", "4", "5", "6", "7",
+    "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7",
     "8", "9", ".", ",", "?", "!", "'", "_", "-", "&", "@", "#", "$", "%", "*", "(", ")", " "];
 
 const indexToChar = {...characters};
@@ -15,10 +15,15 @@ const encryptMessage = () => {
 
     for (let i = 0; i < message.length; ++i) {
         const value = charToIndex[message[i]] + charToIndex[key[i % key.length]];
+        if (isNaN(value)) {
+            document.getElementById("result").innerHTML = "error: invalid characters";
+            return;
+        }
         result += indexToChar[value < characters.length ? value : value - characters.length];
     }
 
     document.getElementById("result").innerHTML = result;
+    document.getElementById("result").className = "visible";
 }
 
 const decryptMessage = () => {
@@ -27,12 +32,13 @@ const decryptMessage = () => {
     const message = document.getElementById("message").value.toUpperCase();
     const key = document.getElementById("key").value.toUpperCase();
 
-    for (let i = 0; i < message.length; ++i){
+    for (let i = 0; i < message.length; ++i) {
         const value = charToIndex[message[i]] - charToIndex[key[i % key.length]];
         result += indexToChar[value >= 0 ? value : characters.length + value];
     }
 
     document.getElementById("result").innerHTML = result;
+    document.getElementById("result").className = "visible";
 }
 
 const toggleState = () => {
@@ -44,7 +50,10 @@ const toggleState = () => {
     setTimeout(() => {
         document.getElementById("encryptBtn").className = checked ? "" : "decrypt";
     }, 800);
-    if (document.getElementById("result").innerHTML)
-        document.getElementById("message").value = document.getElementById("result").innerHTML;
-    document.getElementById("result").innerHTML = "";
+    document.getElementById("result").className = "hidden";
+}
+
+const copyResult = () => {
+    navigator.clipboard.writeText(document.getElementById("result").innerHTML.toLowerCase());
+    document.getElementById("result").className = "hidden";
 }
