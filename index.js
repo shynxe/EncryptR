@@ -61,6 +61,6 @@ const toggleState = () => {
 }
 
 const copyResult = () => {
-    navigator.clipboard.writeText(resultElement.innerHTML.toLowerCase());
+    navigator.clipboard.writeText(resultElement.innerText.toLowerCase());
     resultElement.className = "hidden";
 }
